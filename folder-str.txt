@@ -73,3 +73,10 @@ DSA-Programs/
 └── heaps-hashing/
     ├── heaps.html
     ├── hashing.html
+
+
+Steps to Update Your Git Repository:
+git status
+git add .
+git commit -m "Added program.c and updated existing code"
+git push origin main
