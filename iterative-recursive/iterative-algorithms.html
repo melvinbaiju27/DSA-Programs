@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterative Algorithm</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #35424a;
+            margin-top: 20px;
+        }
+
+        pre {
+            background: #eaeaea;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+            white-space: pre-wrap; /* Allows wrapping of long lines */
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: #35424a;
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            text-align: justify; /* Justify text */
+        }
+
+        ul {
+            margin: 10px 0 20px 20px;
+            text-align: justify; /* Justify text in lists */
+        }
+
+        footer {
+    background: #35424a;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+        .screenshot {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Iterative Algorithm</h1>
+    </header>
+    <main>
+        <section>
+            <h2>What are Iterative Algorithms?</h2>
+            <p>
+                Iterative algorithms use loops (such as <code>for</code> and <code>while</code>) to repeat a set of instructions until a specific condition is met. They are generally easy to understand and implement, and they tend to be more space-efficient because they don't involve function calls.
+            </p>
+        </section>
+        <section>
+            <h2>Key Characteristics</h2>
+            <ul>
+                <li><strong>Loops:</strong> Use loops like <code>for</code>, <code>while</code>, or <code>do-while</code> to repeat instructions.</li>
+                <li><strong>Space Efficiency:</strong> No additional memory is used for function call stacks, making them more space-efficient.</li>
+                <li><strong>Ease of Implementation:</strong> Often simpler to write and debug compared to recursive algorithms.</li>
+                <li><strong>Performance:</strong> Typically faster due to fewer overheads (no function call overhead).</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Example: Factorial Calculation</h2>
+            <p>
+                Here’s an example of calculating the factorial of a number using an iterative approach:
+            </p>
+            <pre><code>
+function factorial(n) {
+    let result = 1;
+    for (let i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+            </code></pre>
+        </section>
+        <section>
+            <h2>When to Use Iterative Algorithms</h2>
+            <p>
+                Iterative algorithms are ideal when:
+            </p>
+            <ul>
+                <li>You need to solve problems with a clear loop structure.</li>
+                <li>Space efficiency is a concern (e.g., in embedded systems).</li>
+                <li>You want to avoid the overhead of recursive function calls.</li>
+            </ul>
+        </section>
+        <h2>FCFS Code</h2>
+        <pre><code>
+    #include &lt;stdio.h&gt;
+    #include &lt;limits.h&gt;
+    #define MAX_PROCESSES 10
+    
+    typedef struct {
+        int id;
+        int arrival_time;
+        int burst_time;
+        int remaining_time;
+        int completion_time;
+        int waiting_time;
+        int turnaround_time;
+        int response_time;
+        int started;
+    } Process;
+    
+    void sort_by_arrival_time(Process processes[], int n) {
+        Process temp;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (processes[j].arrival_time > processes[j + 1].arrival_time) {
+                    temp = processes[j];
+                    processes[j] = processes[j + 1];
+                    processes[j + 1] = temp;
+                }
+            }
+        }
+    }
+    
+    void fcfs(Process processes[], int n) {
+        printf("\n--- First Come First Serve (FCFS) ---\n");
+        int current_time = 0;
+    
+        for (int i = 0; i < n; i++) {
+            if (current_time < processes[i].arrival_time) {
+                current_time = processes[i].arrival_time;
+            }
+            processes[i].response_time = current_time - processes[i].arrival_time;
+            processes[i].waiting_time = processes[i].response_time;
+            current_time += processes[i].burst_time;
+            processes[i].completion_time = current_time;
+            processes[i].turnaround_time = processes[i].completion_time - processes[i].arrival_time;
+        }
+    
+        print_processes(processes, n);
+    }
+    
+    void print_processes(Process processes[], int n) {
+        printf("\nID\tArrival\tBurst\tCompletion\tTurnaround\tWaiting\tResponse\n");
+        for (int i = 0; i < n; i++) {
+            printf("%d\t%d\t%d\t%d\t\t%d\t\t%d\t%d\n",
+                   processes[i].id,
+                   processes[i].arrival_time,
+                   processes[i].burst_time,
+                   processes[i].completion_time,
+                   processes[i].turnaround_time,
+                   processes[i].waiting_time,
+                   processes[i].response_time);
+        }
+    }
+    
+    void calculate_averages(Process processes[], int n) {
+        float total_turnaround_time = 0, total_waiting_time = 0;
+        Process temp;
+        // Sort processes by completion time
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (processes[j].completion_time > processes[j + 1].completion_time) {
+                    temp = processes[j];
+                    processes[j] = processes[j + 1];
+                    processes[j + 1] = temp;
+                }
+            }
+        }
+    
+        // Print the process execution sequence
+        printf("\nProcess execution sequence: ");
+        for (int i = 0; i < n; i++) {
+            printf("P%d ", processes[i].id);
+            total_turnaround_time += processes[i].turnaround_time;
+            total_waiting_time += processes[i].waiting_time;
+        }
+        printf("\nAverage Turnaround Time: %.2f\n", total_turnaround_time / n);
+        printf("Average Waiting Time: %.2f\n", total_waiting_time / n);
+        // Comment on the best algorithm
+        if (n > 0) {
+            printf("\nComment: ");
+            if (total_waiting_time / n <= total_turnaround_time / n) {
+                printf("Shortest Remaining Time (SRT) - Preemptive scheduling tends to give the best average waiting time in most cases.\n");
+            } else {
+                printf("First Come First Serve (FCFS) or Shortest Job First (SJF) - Non Preemptive may be preferred for simple tasks with minimal interruptions.\n");
+            }
+        }
+    }
+    
+    int main() {
+        Process processes[MAX_PROCESSES];
+        int n, choice;
+        // Menu to select scheduling algorithm
+        printf("Choose a scheduling algorithm:\n");
+        printf("1. First Come First Serve (FCFS)\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        // Initial process setup
+        printf("Enter the number of processes: ");
+        scanf("%d", &n);
+        char continue_program;
+        
+        for (int i = 0; i < n; i++) {
+            processes[i].id = i + 1;
+            printf("Enter arrival time for Process %d: ", processes[i].id);
+            scanf("%d", &processes[i].arrival_time);
+            printf("Enter burst time for Process %d: ", processes[i].id);
+            scanf("%d", &processes[i].burst_time);
+            processes[i].remaining_time = processes[i].burst_time;
+            processes[i].started = 0;
+        }
+        switch (choice) {
+            case 1:
+                sort_by_arrival_time(processes, n);
+                fcfs(processes, n);
+                break;
+            default:
+                printf("Invalid choice. Exiting program.\n");
+                return 1;
+        }
+        calculate_averages(processes, n);
+        // Ask the user if they want to continue
+        printf("Do you want to continue in this program? (y/n): ");
+        scanf(" %c", &continue_program);
+        if (continue_program == 'y' || continue_program == 'Y') {
+            main(); // Restart the program
+        } else {
+            printf("Exiting program.\n");
+        }
+        return 0;
+    }
+    
+        </code></pre>
+
+        <h2>Sample Input</h2>
+        <pre><code>
+    Processes: 1, 2, 3, 4, 5
+    Arrivat Times: 0, 5, 12, 2, 9
+    Burst Times: 11, 28, 2, 10, 16
+        </code></pre>
+
+        <h2>Sample Output</h2>
+        <div class="screenshot">
+            <img src="images/fcfs.png" alt="FCFS Output Screenshot">
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 DSA Programs By Melvin. All rights reserved.</p>
+    </footer>
+</body>
+</html>

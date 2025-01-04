@@ -1,0 +1,75 @@
+DSA-Programs/
+│
+├── index.html
+├── styles.css
+│
+├── iterative-recursive/
+│   ├── iterative-algorithms.html
+│   ├── recursive-algorithms.html
+│
+├── linear-data-structures/
+│   ├── stack-array.html
+│   ├── stack-linked-list.html
+│   ├── queue-array.html
+│   ├── queue-linked-list.html
+│   ├── linked-list.html
+│
+├── sorting/
+│   ├── linear-time-sorting.html
+│
+├── searching/
+│   ├── interpolation-search.html
+│   ├── exponential-search.html
+│
+├── trees/
+│   ├── binary-tree-traversals.html
+│   ├── btree.html
+│   ├── bplustree.html
+│   ├── advanced-trees1.html
+│   ├── advanced-trees2.html
+│
+├── graphs/
+│   ├── graph-traversals.html
+│   ├── shortest-path.html
+│   ├── minimum-spanning-trees.html
+│
+└── heaps-hashing/
+    ├── heaps.html
+    ├── hashing.htmlDSA-Programs/
+│
+├── index.html
+├── styles.css
+│
+├── iterative-recursive/
+│   ├── iterative-algorithms.html
+│   ├── recursive-algorithms.html
+│
+├── linear-data-structures/
+│   ├── stack-array.html
+│   ├── stack-linked-list.html
+│   ├── queue-array.html
+│   ├── queue-linked-list.html
+│   ├── linked-list.html
+│
+├── sorting/
+│   ├── linear-time-sorting.html
+│
+├── searching/
+│   ├── interpolation-search.html
+│   ├── exponential-search.html
+│
+├── trees/
+│   ├── binary-tree-traversals.html
+│   ├── btree.html
+│   ├── bplustree.html
+│   ├── advanced-trees1.html
+│   ├── advanced-trees2.html
+│
+├── graphs/
+│   ├── graph-traversals.html
+│   ├── shortest-path.html
+│   ├── minimum-spanning-trees.html
+│
+└── heaps-hashing/
+    ├── heaps.html
+    ├── hashing.html
